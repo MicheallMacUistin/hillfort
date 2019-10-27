@@ -1,4 +1,4 @@
-package org.wit.hillfort
+package org.wit.hillfort.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,19 +6,24 @@ import kotlinx.android.synthetic.main.activity_hillfort.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
+import org.wit.hillfort.R
+import org.wit.hillfort.models.HillfortModel
 
 class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogger feature
 
+    //Creating a hillfort as a class member
+    var hillfort = HillfortModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        info("Hillfort Activity started")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort)
+        info("Hillfort Activity started....")
 
         //Event handler for button
         btnAdd.setOnClickListener() {
-            val hillfortTitle = hillfortTitle.text.toString()
-            if (hillfortTitle.isNotEmpty()) {
-                info("add Button Pressed: $hillfortTitle")
+            hillfort.title = hillfortTitle.text.toString()
+            if (hillfort.title.isNotEmpty()) {
+                info("add Button Pressed: $hillfort")
             }
             else {
                 //Will ask for entry if left blank
