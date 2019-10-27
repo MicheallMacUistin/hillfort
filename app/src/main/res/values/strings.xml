@@ -2,5 +2,5 @@
     <string name="app_name">Hillfort</string>
     <!-- String resource for text field. -->
     <string name="hint_hillfortTitle">Hillfort Title</string>
-    <string name="button_addPlacemark">Add Hillfort</string>
+    <string name="button_addHillfort">Add Hillfort</string>
 </resources>
