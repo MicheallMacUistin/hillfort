@@ -34,6 +34,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
                 for(i in app.hillforts.indices){
                     info("Hillfort[$i]:${app.hillforts[i]}")
                 }
+                setResult(AppCompatActivity.RESULT_OK)
+                finish()
             }
             else {
                 //Will ask for entry if left blank
