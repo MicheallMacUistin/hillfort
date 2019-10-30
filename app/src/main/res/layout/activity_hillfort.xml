@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.HillfortActivity">
+    tools:context="org.wit.hillfort.activities.HillfortActivity">
 
     <!-- Code to include relative layout & toolbar. -->
     <RelativeLayout
@@ -43,10 +43,12 @@
 
                 <!-- Text edit field. -->
                 <EditText
+                    android:id="@+id/description"
                     android:id="@+id/hillfortTitle"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="8dp"
+                    android:hint="@string/hint_hillfortDescription"
                     android:autofillHints=""
                     android:hint="@string/hint_hillfortTitle"
                     android:inputType="text"
@@ -66,7 +68,7 @@
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
                     android:stateListAnimator="@null"
-                    android:text="@string/button_addHillfort"
+                    android:text="Add Hillfort"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
             </LinearLayout>

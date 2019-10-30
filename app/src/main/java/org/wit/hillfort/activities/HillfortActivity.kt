@@ -13,17 +13,23 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
 
     //Creating a hillfort as a class member
     var hillfort = HillfortModel()
+    //Creating an arraylist of hillforts
+    var hillforts = ArrayList<HillfortModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort)
-        info("Hillfort Activity started....")
 
         //Event handler for button
         btnAdd.setOnClickListener() {
             hillfort.title = hillfortTitle.text.toString()
+            hillfort.description = description.text.toString()
             if (hillfort.title.isNotEmpty()) {
+                hillforts.add(hillfort.copy())
                 info("add Button Pressed: $hillfort")
+                for(i in hillforts.indices){
+                    info("Hillfort[$i]:${this.hillforts[i]}")
+                }
             }
             else {
                 //Will ask for entry if left blank
