@@ -41,8 +41,9 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
         return super.onOptionsItemSelected(item)
     }
 
+    //Passing selected hillfort to activity
     override fun onHillfortClick(hillfort: HillfortModel) {
-        startActivityForResult(intentFor<HillfortActivity>(), 0)
+        startActivityForResult(intentFor<HillfortActivity>().putExtra("hillfort_edit", hillfort), 0)
     }
 }
 
