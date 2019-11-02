@@ -29,7 +29,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
     //Id for image request
     val IMAGE_REQUEST = 1
     val LOCATION_REQUEST = 2
-    var location = Location(52.245696, -7.139102, 15f)
+    //var location = Location(52.245696, -7.139102, 15f)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,13 +77,16 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
         chooseImage.setOnClickListener {
             showImagePicker(this, IMAGE_REQUEST)
         }
-
         hillfortLocation.setOnClickListener {
-            startActivityForResult(
-                intentFor<MapActivity>().putExtra("location", location),
-                LOCATION_REQUEST
-            )
+            val location = Location(52.245696, -7.139102, 15f)
+            if (hillfort.zoom != 0f) {
+                location.lat =  hillfort.lat
+                location.lng = hillfort.lng
+                location.zoom = hillfort.zoom
+            }
+            startActivityForResult(intentFor<MapActivity>().putExtra("location", location), LOCATION_REQUEST)
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -114,12 +117,15 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
                     chooseImage.setText(R.string.change_hillfort_image)
                 }
             }
-
             LOCATION_REQUEST -> {
                 if (data != null) {
-                    location = data.extras?.getParcelable<Location>("location")!!
+                    val location = data.extras?.getParcelable<Location>("location")!!
+                    hillfort.lat = location.lat
+                    hillfort.lng = location.lng
+                    hillfort.zoom = location.zoom
                 }
             }
         }
-    }
-}
+    } }
+
+
