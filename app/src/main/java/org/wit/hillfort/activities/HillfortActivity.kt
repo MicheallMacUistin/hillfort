@@ -8,6 +8,7 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_hillfort.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
 import org.wit.hillfort.R
 import org.wit.hillfort.helpers.readImage
@@ -75,6 +76,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
         }
 
         hillfortLocation.setOnClickListener {
+            startActivity (intentFor<MapActivity>())
             info ("Set Location Pressed")
         }
         }
