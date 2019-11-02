@@ -7,4 +7,6 @@
     <string name="hint_hillfortDescription">Description</string>
     <!-- String resource to trigger creation of hillforts -->
     <string name="menu_addHillfort">Add</string>
+    <!-- String resource for cancellation request -->
+    <string name="menu_cancelHillfort">Cancel</string>
 </resources>

@@ -2,9 +2,9 @@ package org.wit.hillfort.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_hillfort.*
-import kotlinx.android.synthetic.main.activity_hillfort.description
-import kotlinx.android.synthetic.main.card_hillfort.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
@@ -22,6 +22,11 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort)
+        toolbarAdd.title = title
+        setSupportActionBar(toolbarAdd)
+
+        info("Hillfort Activity Started")
+
         app = application as MainApp
 
         //Event handler for button
@@ -42,5 +47,20 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
                 toast ("Please Enter a title")
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_hillfort, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    //Method to handle Cancel event
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.item_cancel -> {
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
