@@ -9,4 +9,8 @@
     <string name="menu_addHillfort">Add</string>
     <!-- String resource for cancellation request -->
     <string name="menu_cancelHillfort">Cancel</string>
+    <!-- String resource to ask user to enter a title if field left blank-->
+    <string name="enter_hillfort_title"> Please enter a Hillfort Title </string>
+    <!-- String resource to save hillfort -->
+    <string name="save_hillfort"> Save Hillfort </string>
 </resources>
