@@ -1,5 +1,6 @@
 package org.wit.hillfort.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -9,6 +10,8 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import org.wit.hillfort.R
+import org.wit.hillfort.helpers.readImage
+import org.wit.hillfort.helpers.readImageFromPath
 import org.wit.hillfort.helpers.showImagePicker
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.HillfortModel
@@ -41,6 +44,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
             hillfort = intent.extras?.getParcelable<HillfortModel>("hillfort_edit")!!
             hillfortTitle.setText(hillfort.title)
             description.setText(hillfort.description)
+            hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.image))
             btnAdd.setText(R.string.save_hillfort)
         }
 
@@ -83,5 +87,18 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
 
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    //Recover image name when picker activity is finished
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            IMAGE_REQUEST -> {
+                if (data != null) {
+                    hillfort.image = data.getData().toString()
+                    hillfortImage.setImageBitmap(readImage(this, resultCode, data))
+                }
+            }
+        }
     }
 }
