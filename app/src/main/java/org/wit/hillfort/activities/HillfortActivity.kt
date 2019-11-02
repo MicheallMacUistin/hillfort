@@ -24,10 +24,12 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
     var hillfort = HillfortModel()
 
     //Refer to MainApp object with null safety '?'
-    lateinit var app : MainApp
+    lateinit var app: MainApp
 
     //Id for image request
     val IMAGE_REQUEST = 1
+    val LOCATION_REQUEST = 2
+    var location = Location(52.245696, -7.139102, 15f)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +40,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
         info("Hillfort Activity Started")
 
         app = application as MainApp
-        var edit =false
+        var edit = false
 
 
         if (intent.hasExtra("hillfort_edit")) {
@@ -59,17 +61,17 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
             hillfort.description = description.text.toString()
             if (hillfort.title.isEmpty()) {
                 toast(R.string.enter_hillfort_title)
-            } else{
-                if(edit) {
+            } else {
+                if (edit) {
                     app.hillforts.update(hillfort.copy())
-                }else{
+                } else {
                     app.hillforts.create(hillfort.copy())
-                    }
                 }
-            info("add Button Pressed: ${hillfort}")
-                setResult(AppCompatActivity.RESULT_OK)
-                finish()
             }
+            info("add Button Pressed: ${hillfort}")
+            setResult(AppCompatActivity.RESULT_OK)
+            finish()
+        }
 
         //Trigger image picker
         chooseImage.setOnClickListener {
@@ -77,11 +79,12 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
         }
 
         hillfortLocation.setOnClickListener {
-            val location = Location(52.245696, -7.139102, 15f)
-            startActivity (intentFor<MapActivity>())
-            info ("Set Location Pressed")
+            startActivityForResult(
+                intentFor<MapActivity>().putExtra("location", location),
+                LOCATION_REQUEST
+            )
         }
-        }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_hillfort, menu)
@@ -109,6 +112,12 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
                     hillfort.image = data.getData().toString()
                     hillfortImage.setImageBitmap(readImage(this, resultCode, data))
                     chooseImage.setText(R.string.change_hillfort_image)
+                }
+            }
+
+            LOCATION_REQUEST -> {
+                if (data != null) {
+                    location = data.extras?.getParcelable<Location>("location")!!
                 }
             }
         }
