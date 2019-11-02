@@ -45,6 +45,9 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
             hillfortTitle.setText(hillfort.title)
             description.setText(hillfort.description)
             hillfortImage.setImageBitmap(readImageFromPath(this, hillfort.image))
+            if (hillfort.image != null) {
+                chooseImage.setText(R.string.change_hillfort_image)
+            }
             btnAdd.setText(R.string.save_hillfort)
         }
 
@@ -69,6 +72,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
         //Trigger image picker
         chooseImage.setOnClickListener {
             showImagePicker(this, IMAGE_REQUEST)
+        }
+
+        hillfortLocation.setOnClickListener {
+            info ("Set Location Pressed")
         }
         }
 
@@ -97,6 +104,7 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
                 if (data != null) {
                     hillfort.image = data.getData().toString()
                     hillfortImage.setImageBitmap(readImage(this, resultCode, data))
+                    chooseImage.setText(R.string.change_hillfort_image)
                 }
             }
         }

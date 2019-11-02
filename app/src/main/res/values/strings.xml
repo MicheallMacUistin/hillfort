@@ -17,4 +17,8 @@
     <string name="button_addImage"> Add Image </string>
     <!-- String resource to select a hillfort image -->
     <string name="select_hillfort_image">Select hillfort image</string>
+    <!-- String resource for change image button -->
+    <string name="change_hillfort_image">Change hillfort image</string>
+    <!-- String resource to add location -->
+    <string name="button_location">Set Location</string>
 </resources>
