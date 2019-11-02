@@ -9,6 +9,7 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import org.wit.hillfort.R
+import org.wit.hillfort.helpers.showImagePicker
 import org.wit.hillfort.main.MainApp
 import org.wit.hillfort.models.HillfortModel
 
@@ -16,8 +17,12 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
 
     //Creating a hillfort as a class member
     var hillfort = HillfortModel()
+
     //Refer to MainApp object with null safety '?'
     lateinit var app : MainApp
+
+    //Id for image request
+    val IMAGE_REQUEST = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +61,11 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
                 setResult(AppCompatActivity.RESULT_OK)
                 finish()
             }
+
+        //Trigger image picker
+        chooseImage.setOnClickListener {
+            showImagePicker(this, IMAGE_REQUEST)
+        }
         }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -69,6 +79,8 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
             R.id.item_cancel -> {
                 finish()
             }
+
+
         }
         return super.onOptionsItemSelected(item)
     }
