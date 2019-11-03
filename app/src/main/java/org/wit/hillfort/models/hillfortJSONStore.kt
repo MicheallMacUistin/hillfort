@@ -40,6 +40,17 @@ class hillfortJSONStore : HillfortStore, AnkoLogger {
 
 
     override fun update(hillfort: HillfortModel) {
+        val hillfortsList = findAll() as ArrayList<HillfortModel>
+        var foundHillfort: HillfortModel? = hillfortsList.find { p -> p.id == hillfort.id }
+        if (foundHillfort != null) {
+            foundHillfort.title = hillfort.title
+            foundHillfort.description = hillfort.description
+            foundHillfort.image = hillfort.image
+            foundHillfort.lat = hillfort.lat
+            foundHillfort.lng = hillfort.lng
+            foundHillfort.zoom = hillfort.zoom
+        }
+        serialize()
         // todo
     }
 

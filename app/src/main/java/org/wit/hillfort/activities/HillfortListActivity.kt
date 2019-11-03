@@ -28,6 +28,7 @@ class HillfortListActivity : AppCompatActivity(), HillfortListener {
 
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = HillfortAdapter(app.hillforts.findAll(), this)
         loadHillforts()
     }
 
