@@ -99,6 +99,10 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
     //Method to handle Cancel event
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
+            R.id.item_delete -> {
+                app.hillforts.delete(hillfort)
+                finish()
+            }
             R.id.item_cancel -> {
                 finish()
             }
