@@ -23,13 +23,16 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
     //Creating a hillfort as a class member
     var hillfort = HillfortModel()
 
-    //Refer to MainApp object with null safety '?'
+    //Refer to MainApp object
     lateinit var app: MainApp
 
     //Id for image request
     val IMAGE_REQUEST = 1
+
     val LOCATION_REQUEST = 2
     //var location = Location(52.245696, -7.139102, 15f)
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +44,6 @@ class HillfortActivity : AppCompatActivity(), AnkoLogger {  //Includes AnkoLogge
 
         app = application as MainApp
         var edit = false
-
 
         if (intent.hasExtra("hillfort_edit")) {
             edit = true
