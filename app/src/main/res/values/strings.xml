@@ -23,5 +23,14 @@
     <string name="button_location">Set Location</string>
     <!-- String resource for delete function -->
     <string name="menu_deleteHillfort">Delete</string>
+    <!-- String resource for map function -->
     <string name="title_activity_map">Map</string>
+    <!-- String resource for map of all hillforts function -->
+    <string name="title_activity_hillfort_maps">Map of All Hillforts</string>
+    <!-- String resource for hillfort image function -->
+    <string name="hillfort_image_placeholder">Hillfort Image</string>
+    <!-- String resource for hillfort titla function -->
+    <string name="hillfort_title_placeholder">Hillfort Title</string>
+    <!-- String resource for hillfort description function -->
+    <string name="hillfort_description_placeholder">Hillfort Description</string>
 </resources>
