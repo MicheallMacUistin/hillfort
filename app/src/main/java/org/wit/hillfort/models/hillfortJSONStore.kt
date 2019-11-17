@@ -59,6 +59,11 @@ class hillfortJSONStore : HillfortStore, AnkoLogger {
         serialize()
     }
 
+    override fun findById(id:Long) : HillfortModel? {
+        val foundHillfort: HillfortModel? = hillforts.find { it.id == id }
+        return foundHillfort
+    }
+
     private fun serialize() {
         val jsonString = gsonBuilder.toJson(hillforts, listType)
         write(context, JSON_FILE, jsonString)
