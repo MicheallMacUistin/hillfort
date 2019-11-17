@@ -44,7 +44,7 @@ class HillfortMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListene
 
     override fun onMarkerClick(marker: Marker): Boolean {
         currentTitle.text = marker.title
-        currentDescription.text = marker.title
+        //currentDescription.text = marker.description
         return false
     }
 
