@@ -13,9 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.HillfortMapsActivity"
+            android:name="views.map.HillfortMapView"
             android:label="@string/title_activity_hillfort_maps"
-            ></activity>
+            android:theme="@style/AppTheme"></activity>
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
