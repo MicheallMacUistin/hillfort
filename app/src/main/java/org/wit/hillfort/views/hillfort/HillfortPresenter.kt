@@ -1,6 +1,10 @@
 package org.wit.hillfort.views.hillfort
 
 import android.content.Intent
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import org.wit.hillfort.helpers.showImagePicker
 import org.wit.hillfort.models.Location
 import org.wit.hillfort.models.HillfortModel
@@ -8,6 +12,7 @@ import org.wit.hillfort.views.*
 
 class HillfortPresenter(view: BaseView) : BasePresenter(view) {
 
+    var map: GoogleMap? = null
     var hillfort = HillfortModel()
     var defaultLocation = Location(52.245696, -7.139102, 15f)
     var edit = false;
@@ -17,7 +22,27 @@ class HillfortPresenter(view: BaseView) : BasePresenter(view) {
             edit = true
             hillfort = view.intent.extras?.getParcelable<HillfortModel>("hillfort_edit")!!
             view.showHillfort(hillfort)
+        } else {
+            hillfort.lat = defaultLocation.lat
+            hillfort.lng = defaultLocation.lng
         }
+    }
+
+    fun doConfigureMap(m: GoogleMap) {
+        map = m
+        locationUpdate(hillfort.lat, hillfort.lng)
+    }
+
+    fun locationUpdate(lat: Double, lng: Double) {
+        hillfort.lat = lat
+        hillfort.lng = lng
+        hillfort.zoom = 15f
+        map?.clear()
+        map?.uiSettings?.setZoomControlsEnabled(true)
+        val options = MarkerOptions().title(hillfort.title).position(LatLng(hillfort.lat, hillfort.lng))
+        map?.addMarker(options)
+        map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(hillfort.lat, hillfort.lng), hillfort.zoom))
+        view?.showHillfort(hillfort)
     }
 
     fun doAddOrSave(title: String, description: String) {
@@ -41,23 +66,16 @@ class HillfortPresenter(view: BaseView) : BasePresenter(view) {
     }
 
     fun doSelectImage() {
-        view?.let {
+        view?.let{
             showImagePicker(view!!, IMAGE_REQUEST)
         }
     }
 
     fun doSetLocation() {
         if (edit == false) {
-            view?.navigateTo(
-                VIEW.LOCATION,
-                LOCATION_REQUEST, "location", defaultLocation)
+            view?.navigateTo(VIEW.LOCATION, LOCATION_REQUEST, "location", defaultLocation)
         } else {
-            view?.navigateTo(
-                VIEW.LOCATION,
-                LOCATION_REQUEST,
-                "location",
-                Location(hillfort.lat, hillfort.lng, hillfort.zoom)
-            )
+            view?.navigateTo(VIEW.LOCATION, LOCATION_REQUEST, "location", Location(hillfort.lat, hillfort.lng, hillfort.zoom))
         }
     }
 
@@ -72,6 +90,7 @@ class HillfortPresenter(view: BaseView) : BasePresenter(view) {
                 hillfort.lat = location.lat
                 hillfort.lng = location.lng
                 hillfort.zoom = location.zoom
+                locationUpdate(hillfort.lat, hillfort.lng)
             }
         }
     }
