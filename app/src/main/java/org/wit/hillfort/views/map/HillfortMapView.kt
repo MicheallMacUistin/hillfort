@@ -6,7 +6,6 @@ import com.google.android.gms.maps.model.Marker
 import org.wit.hillfort.R
 import kotlinx.android.synthetic.main.activity_hillfort_map.*
 import kotlinx.android.synthetic.main.content_hillfort_map.*
-//import kotlinx.android.synthetic.main.content_hillfort_maps.*
 import org.wit.hillfort.helpers.readImageFromPath
 import org.wit.hillfort.models.HillfortModel
 import org.wit.hillfort.views.BaseView

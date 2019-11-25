@@ -8,7 +8,8 @@ import androidx.appcompat.widget.Toolbar
 import org.jetbrains.anko.AnkoLogger
 
 import org.wit.hillfort.models.HillfortModel
-import org.wit.hillfort.views.editLocation.EditLocationView
+//import org.wit.hillfort.views.editLocation.EditLocationView
+import org.wit.hillfort.views.editlocation.EditLocationView
 import org.wit.hillfort.views.hillfort.HillfortView
 import org.wit.hillfort.views.hillfortlist.HillfortListView
 import org.wit.hillfort.views.map.HillfortMapView

@@ -21,11 +21,14 @@ class HillfortView : BaseView(), AnkoLogger {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort)
-
-        init(toolbarAdd)
+        super.init(toolbarAdd)
 
         presenter = initPresenter (HillfortPresenter(this)) as HillfortPresenter
 
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync {
+            presenter.doConfigureMap(it)
+        }
         chooseImage.setOnClickListener { presenter.doSelectImage() }
 
         hillfortLocation.setOnClickListener { presenter.doSetLocation() }
@@ -70,5 +73,28 @@ class HillfortView : BaseView(), AnkoLogger {
 
     override fun onBackPressed() {
         presenter.doCancel()
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        mapView.onDestroy()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView.onLowMemory()
+    }
+    override fun onPause() {
+        super.onPause()
+        mapView.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mapView.onResume()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        mapView.onSaveInstanceState(outState)
     }
 }
