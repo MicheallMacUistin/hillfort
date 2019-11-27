@@ -8,8 +8,9 @@ import kotlinx.android.synthetic.main.activity_hillfort_list.*
 import org.wit.hillfort.R
 import org.wit.hillfort.models.HillfortModel
 import org.wit.hillfort.views.BaseView
-import org.wit.hillfort.views.hillfortList.HillfortAdapter
-import org.wit.hillfort.views.hillfortList.HillfortListener
+
+
+
 
 class HillfortListView :  BaseView(), HillfortListener {
 
