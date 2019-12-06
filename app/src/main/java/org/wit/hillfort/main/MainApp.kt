@@ -5,6 +5,7 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.wit.hillfort.models.json.hillfortJSONStore
 import org.wit.hillfort.models.HillfortStore
+import org.wit.hillfort.models.room.HillfortStoreRoom
 
 class MainApp : Application(), AnkoLogger {
 
@@ -13,7 +14,8 @@ class MainApp : Application(), AnkoLogger {
     override fun onCreate() {
         super.onCreate()
         //hillforts = HillfortMemStore()
-        hillforts = hillfortJSONStore(applicationContext)
+        //hillforts = hillfortJSONStore(applicationContext)
+        hillforts = HillfortStoreRoom(applicationContext)
         info("Hillfort started")
     }
 }
