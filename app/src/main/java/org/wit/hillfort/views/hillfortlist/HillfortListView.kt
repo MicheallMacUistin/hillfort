@@ -9,9 +9,6 @@ import org.wit.hillfort.R
 import org.wit.hillfort.models.HillfortModel
 import org.wit.hillfort.views.BaseView
 
-
-
-
 class HillfortListView :  BaseView(), HillfortListener {
 
     lateinit var presenter: HillfortListPresenter
@@ -19,7 +16,9 @@ class HillfortListView :  BaseView(), HillfortListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort_list)
-        setSupportActionBar(toolbar)
+        super.init(toolbar, false);
+        //init(toolbar, false)
+        //setSupportActionBar(toolbar)
 
         presenter = initPresenter(HillfortListPresenter(this)) as HillfortListPresenter
 
