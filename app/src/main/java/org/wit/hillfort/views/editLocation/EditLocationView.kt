@@ -29,10 +29,10 @@ class EditLocationView : BaseView(), GoogleMap.OnMarkerDragListener, GoogleMap.O
         }
     }
 
-    override fun showLocation(latitude : Double, longitude : Double) {
+/*    override fun showLocation(latitude : Double, longitude : Double) {
         lat.setText("%.6f".format(latitude))
         lng.setText("%.6f".format(longitude))
-    }
+    }*/
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_edit_location, menu)
