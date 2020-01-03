@@ -17,8 +17,6 @@ class HillfortListView :  BaseView(), HillfortListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hillfort_list)
         super.init(toolbar, false);
-        //init(toolbar, false)
-        //setSupportActionBar(toolbar)
 
         presenter = initPresenter(HillfortListPresenter(this)) as HillfortListPresenter
 
